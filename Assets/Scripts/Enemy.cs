@@ -11,14 +11,22 @@ public class Enemy : MonoBehaviour
     private bool _isColEnterLine = false;
     private float _delayTimeToMoveToWardPlayer = .2f;
 
+    private bool _isLeftCat;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        _isLeftCat = (transform.position.x - _target.position.x) < 0 ? true : false;
+
+        Debug.Log(_isLeftCat);
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(0, 0, _isLeftCat ? 270 - CalculateAngle() : CalculateAngle() + 90);
         if(!_isColEnterLine)
             transform.position = Vector2.MoveTowards(transform.position, _target.position, _moveSpeed * Time.fixedDeltaTime);
     }
@@ -46,5 +54,17 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(_delayTimeToMoveToWardPlayer);
         _rb.velocity = new Vector2(0f, 0f);
         _isColEnterLine = false;
+    }
+
+    private float CalculateAngle()
+    {
+        float oppositeSide = Mathf.Abs(transform.position.y - _target.transform.position.y);
+        float adjacentSide = Mathf.Abs(transform.position.x - _target.transform.position.x);
+
+        float alphaRad = Mathf.Atan2(oppositeSide, adjacentSide);
+
+        float alphaDegree = alphaRad * 180 / Mathf.PI;
+
+        return alphaDegree;
     }
 }
