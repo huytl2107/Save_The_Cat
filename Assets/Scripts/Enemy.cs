@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
+    [SerializeField] private GameObject _target;
     [SerializeField] private float _moveSpeed;
     private Rigidbody2D _rb;
 
@@ -13,14 +13,21 @@ public class Enemy : MonoBehaviour
 
     private bool _isLeftCat;
 
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _target = GameObject.Find("Cat");
 
-        _isLeftCat = (transform.position.x - _target.position.x) < 0 ? true : false;
+        _isLeftCat = (transform.position.x - _target.transform.position.x) < 0 ? true : false;
 
         Debug.Log(_isLeftCat);
 
+    }
+
+    private void OnEnable()
+    {
+        _rb.velocity = new Vector2(0f, 0f);
     }
 
     // Update is called once per frame
@@ -28,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, _isLeftCat ? 270 - CalculateAngle() : CalculateAngle() + 90);
         if(!_isColEnterLine)
-            transform.position = Vector2.MoveTowards(transform.position, _target.position, _moveSpeed * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, _moveSpeed * Time.fixedDeltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

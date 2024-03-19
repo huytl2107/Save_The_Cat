@@ -31,6 +31,9 @@ public class LineController : MonoBehaviour
         {
             _rb.simulated = true;
             _col.SetPoints(_listPoints);
+
+            //Notify tới nest để spawn Bug
+            Subject.Notify("EndLine");
         }
 
         if (!Input.GetMouseButton(0))
