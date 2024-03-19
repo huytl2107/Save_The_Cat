@@ -8,8 +8,10 @@ public class LineController : MonoBehaviour
     private Rigidbody2D _rb;
     private EdgeCollider2D _col;
 
+
     [SerializeField] private List<Vector2> _listPoints = new List<Vector2>();
     private Vector2 _oldPoint = Vector2.zero;
+    private bool _isLineEnded = false;
 
     void Start()
     {
@@ -21,22 +23,21 @@ public class LineController : MonoBehaviour
     void Update()
     {
         //đảm bảo list là rỗng khi nhấn chuột
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !_isLineEnded)
         {
             _listPoints.Clear();
             _line.positionCount = 0;
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && !_isLineEnded)
         {
-            _rb.simulated = true;
-            _col.SetPoints(_listPoints);
-
-            //Notify tới nest để spawn Bug
-            Subject.Notify("EndLine");
+            EndLine();
         }
 
         if (!Input.GetMouseButton(0))
+            return;
+
+        if (_isLineEnded)
             return;
 
         Vector2 newPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,5 +54,26 @@ public class LineController : MonoBehaviour
             _line.SetPosition(i, _listPoints[i]);
         }
 
+        _col.SetPoints(_listPoints);
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Terrain") || collision.gameObject.name == "Cat")
+        {
+            EndLine();
+        }
+    }
+
+    private void EndLine()
+    {
+        _isLineEnded = true;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _col.isTrigger = false;
+
+        //Notify tới nest để spawn Bug
+        Subject.Notify("EndLine");
+    }    
 }
