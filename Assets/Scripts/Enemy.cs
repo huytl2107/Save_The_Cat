@@ -25,11 +25,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        _rb.velocity = new Vector2(0f, 0f);
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
