@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,21 +13,24 @@ public class Enemy : MonoBehaviour
 
     private bool _isLeftCat;
 
-
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _target = GameObject.Find("Cat");
 
-        _isLeftCat = (transform.position.x - _target.transform.position.x) < 0 ? true : false;
-
+        CheckLeftOrRightCat();
         Debug.Log(_isLeftCat);
 
+    }
+    public void CheckLeftOrRightCat()
+    {
+        _isLeftCat = (transform.position.x - _target.transform.position.x) < 0 ? true : false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        CheckLeftOrRightCat();
         transform.rotation = Quaternion.Euler(0, 0, _isLeftCat ? 270 - CalculateAngle() : CalculateAngle() + 90);
         if(!_isColEnterLine)
             transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, _moveSpeed * Time.fixedDeltaTime);

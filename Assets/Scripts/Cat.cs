@@ -23,6 +23,15 @@ public class Cat : MonoBehaviour, IObserver
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Lava"))
+        {
+            Debug.Log("Va chạm với Lava");
+            UIManager.Instant.PopUpWinPanel();
+        }
+    }
+
     public void OnNotify(string key)
     {
         if(key == "EndLine")

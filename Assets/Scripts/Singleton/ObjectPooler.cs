@@ -47,6 +47,11 @@ public class ObjectPooler : Singleton <ObjectPooler>
         objToSpawn.transform.position = position;
         objToSpawn.transform.rotation = roration;
 
+        //Check bug is left or right cat when recall and set new position
+        //Enemy bug = objToSpawn.GetComponent<Enemy>();
+        //if(bug != null)
+        //    bug.CheckLeftOrRightCat();
+
         Rigidbody2D rb = objToSpawn.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0f, 0f); //Set velocity về 0 tránh bug bọ bay thẳng lên trời khi gọi lại;
 
