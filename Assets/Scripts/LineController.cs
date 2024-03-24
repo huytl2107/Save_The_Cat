@@ -75,5 +75,10 @@ public class LineController : MonoBehaviour
 
         //Notify tới nest để spawn Bug
         Subject.Notify("EndLine");
-    }    
+    }
+
+    public int GetCountListPoint()
+    {
+        return _listPoints.Count;
+    }
 }
