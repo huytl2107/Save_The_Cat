@@ -7,11 +7,10 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _losePanel;
+    [SerializeField] private GameObject _starPanel;
 
     [Header("Star")]
-    [SerializeField] private Image _star1;
-    [SerializeField] private Image _star2;
-    [SerializeField] private Image _star3;
+    private Image[] _starIMG;
     [SerializeField] private Sprite _star;
     [SerializeField] private Sprite _nullStar;  //Code dơ vkl
 
@@ -24,6 +23,7 @@ public class UIManager : Singleton<UIManager>
 
         PopDownWinPanel();
         PopDownLosePanel();
+        _starIMG = _starPanel.GetComponentsInChildren<Image>();
     }
 
     #region WinPanel
@@ -61,24 +61,9 @@ public class UIManager : Singleton<UIManager>
         Debug.Log(_slider.value);
         float value = _slider.value;
 
-        if (value > .67f)
+        for (int i = 0; i<_starIMG.Length; i++)
         {
-
-        }
-        else if (value > .33f)
-        {
-            _star3.sprite = _nullStar;
-        }
-        else if (value > 0)
-        {
-            _star3.sprite = _nullStar;
-            _star2.sprite = _nullStar;
-        }
-        else
-        {
-            _star3.sprite = _nullStar;
-            _star2.sprite = _nullStar;
-            _star1.sprite = _nullStar;
+            _starIMG[i].sprite = (value > .33f * i) ? _star : _nullStar;
         }
     }
 }
