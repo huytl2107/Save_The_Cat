@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BugNest : MonoBehaviour, IObserver
 {
-    bool _canSpawn = false;
+    private bool _canSpawn = false;
+    private bool _gameOver = false;
     [SerializeField] private float _delayTime = .5f;
     // Start is called before the first frame update
 
@@ -16,7 +17,7 @@ public class BugNest : MonoBehaviour, IObserver
     // Update is called once per frame
     void Update()
     {
-        if (_canSpawn == false)
+        if (!_canSpawn || _gameOver)
             return;
 
         ObjectPooler.Instant.GetPoolObject("Bug", transform.position, Quaternion.identity);
@@ -32,15 +33,13 @@ public class BugNest : MonoBehaviour, IObserver
 
     public void OnNotify(string key)
     {
-        if(key == "EndLine")
+        if (key == "EndLine")
         {
-            Debug.Log("Spawn Bug");
-            BugSpawn();
+            _canSpawn = true;
         }
-    }
-
-    public void BugSpawn()
-    {
-        _canSpawn = true;
+        if(key == "GameOver")
+        {
+            _gameOver = true;
+        }
     }
 }

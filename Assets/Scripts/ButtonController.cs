@@ -8,5 +8,6 @@ public class ButtonControler : MonoBehaviour
     {
         GameManager.Instant.RestartGame();
         UIManager.Instant.PopDownWinPanel();
+        UIManager.Instant.PopDownLosePanel();
     }
 }

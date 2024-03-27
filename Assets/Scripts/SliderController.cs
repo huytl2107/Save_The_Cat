@@ -25,8 +25,6 @@ public class SliderController : MonoBehaviour
     private void GetValue()
     {
         float value = (_maxCountOneStar-line.GetCountListPoint())/_maxCountOneStar;
-
-        Debug.Log("Value: " + value);
         _slider.value = value;
     }
 }

@@ -18,8 +18,7 @@ public class Cat : MonoBehaviour, IObserver
     {
         if(collision.gameObject.CompareTag("Enemies"))
         {
-            Debug.Log("Va chạm với Enemies");
-            UIManager.Instant.PopUpWinPanel();
+            GameOVer();
         }
     }
 
@@ -27,8 +26,7 @@ public class Cat : MonoBehaviour, IObserver
     {
         if(collision.gameObject.CompareTag("Lava"))
         {
-            Debug.Log("Va chạm với Lava");
-            UIManager.Instant.PopUpWinPanel();
+            GameOVer();
         }
     }
 
@@ -39,6 +37,12 @@ public class Cat : MonoBehaviour, IObserver
             if(_rb != null)
                 _rb.bodyType = RigidbodyType2D.Dynamic;
         }
+    }
+
+    private void GameOVer()
+    {
+        UIManager.Instant.PopUpLosePanel();
+        Subject.Notify("GameOver");
     }
 
 }
