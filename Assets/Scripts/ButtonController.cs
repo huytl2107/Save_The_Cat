@@ -10,4 +10,11 @@ public class ButtonControler : MonoBehaviour
         UIManager.Instant.PopDownWinPanel();
         UIManager.Instant.PopDownLosePanel();
     }
+
+    public void NextLevel()
+    {
+        GameManager.Instant.LoadNextLevel();
+        UIManager.Instant.PopDownWinPanel();
+        UIManager.Instant.PopDownLosePanel();
+    }
 }

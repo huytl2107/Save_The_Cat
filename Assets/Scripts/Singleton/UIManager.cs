@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    [SerializeField] private GameObject _gameUI;
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _losePanel;
     [SerializeField] private GameObject _starPanel;
+    [SerializeField] private GameObject _selecLevelPanel;
+    [SerializeField] private GameObject _startMenu;
 
     [Header("Star")]
     private Image[] _starIMG;
     [SerializeField] private Sprite _star;
-    [SerializeField] private Sprite _nullStar;  //Code dơ vkl
+    [SerializeField] private Sprite _nullStar;
 
     [Header("Slider Bar")]
     [SerializeField] private Slider _slider;
@@ -24,6 +27,20 @@ public class UIManager : Singleton<UIManager>
         PopDownWinPanel();
         PopDownLosePanel();
         _starIMG = _starPanel.GetComponentsInChildren<Image>();
+
+        //code tạm
+        if(_selecLevelPanel!= null )_selecLevelPanel.SetActive(false);
+        
+        if(GameManager.Instant.GetBuildIndex() == 0)
+        {
+            if(_gameUI != null)
+            _gameUI.SetActive(false);
+        } 
+        else
+        {
+            if(_startMenu != null)
+            _startMenu.SetActive(false);
+        }
     }
 
     #region WinPanel

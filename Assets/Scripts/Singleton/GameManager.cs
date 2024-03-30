@@ -15,4 +15,15 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public int GetBuildIndex()
+    {
+        int buildIndexINT = SceneManager.GetActiveScene().buildIndex;
+        return buildIndexINT;
+    }
 }
