@@ -26,4 +26,10 @@ public class GameManager : Singleton<GameManager>
         int buildIndexINT = SceneManager.GetActiveScene().buildIndex;
         return buildIndexINT;
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }

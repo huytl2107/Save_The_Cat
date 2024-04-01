@@ -11,6 +11,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _starPanel;
     [SerializeField] private GameObject _selecLevelPanel;
     [SerializeField] private GameObject _startMenu;
+    [SerializeField] private GameObject _exitComfirm;
 
     [Header("Star")]
     private Image[] _starIMG;
@@ -26,6 +27,8 @@ public class UIManager : Singleton<UIManager>
 
         PopDownWinPanel();
         PopDownLosePanel();
+        PopDownExitConfirm();
+
         _starIMG = _starPanel.GetComponentsInChildren<Image>();
 
         //code tạm
@@ -40,6 +43,17 @@ public class UIManager : Singleton<UIManager>
         {
             if(_startMenu != null)
             _startMenu.SetActive(false);
+        }
+    }
+
+    private void GetStar()
+    {
+        Debug.Log(_slider.value);
+        float value = _slider.value;
+
+        for (int i = 0; i < _starIMG.Length; i++)
+        {
+            _starIMG[i].sprite = (value > .33f * i) ? _star : _nullStar;
         }
     }
 
@@ -73,14 +87,17 @@ public class UIManager : Singleton<UIManager>
     }
     #endregion LosePanel
 
-    private void GetStar()
-    {
-        Debug.Log(_slider.value);
-        float value = _slider.value;
+    #region ExitConfirm
 
-        for (int i = 0; i<_starIMG.Length; i++)
-        {
-            _starIMG[i].sprite = (value > .33f * i) ? _star : _nullStar;
-        }
+    public void PopUpExitConfirm()
+    {
+        _exitComfirm.SetActive(true);
     }
+
+    public void PopDownExitConfirm()
+    {
+        _exitComfirm.SetActive(false);
+    }
+
+    #endregion ExitConfirm
 }

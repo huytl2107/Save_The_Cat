@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed60730bde9fee84a9eadf60e3a10e8c
+guid: 3b2cc54513f4e3145adaefd7086f3b5e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: volume button_0
+      name: yes no button_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb0345d93413ac840b26356fd001b476
-      internalID: 218339841
+      spriteID: 8cd2ede8f28a8644a915e4b151fe6ffc
+      internalID: 2041862104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: volume button_1
+      name: yes no button_1
       rect:
         serializedVersion: 2
         x: 96
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2021aabea4a603240b0020339e053dd0
-      internalID: -1699400759
+      spriteID: 0d905ee81d4d2984db5220129733913d
+      internalID: 388534473
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      volume button_0: 218339841
-      volume button_1: -1699400759
+      yes no button_0: 2041862104
+      yes no button_1: 388534473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

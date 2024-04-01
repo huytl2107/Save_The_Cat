@@ -17,4 +17,19 @@ public class ButtonControler : MonoBehaviour
         UIManager.Instant.PopDownWinPanel();
         UIManager.Instant.PopDownLosePanel();
     }
+
+    public void PopUpExitConfirm()
+    {
+        UIManager.Instant.PopUpExitConfirm();
+    }
+
+    public void PopDownExitConfirm()
+    {
+        UIManager.Instant.PopDownExitConfirm();
+    }
+
+    public void ExitGame()
+    {
+        GameManager.Instant.ExitGame();
+    }
 }
