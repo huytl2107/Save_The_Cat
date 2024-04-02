@@ -13,8 +13,6 @@ public class Cat : MonoBehaviour, IObserver
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        UIManager.Instant.LoadUI();
-        Subject.Notify("StartGame");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

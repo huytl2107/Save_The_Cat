@@ -9,6 +9,12 @@ public class ButtonControler : MonoBehaviour
         GameManager.Instant.RestartGame();
     }
 
+    public void ReturnHome()
+    {
+        GameManager.Instant.ReturnHome();
+        UIManager.Instant.LoadUI();
+    }
+
     public void NextLevel()
     {
         GameManager.Instant.LoadNextLevel();
