@@ -13,12 +13,14 @@ public class Cat : MonoBehaviour, IObserver
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        UIManager.Instant.LoadUI();
+        Subject.Notify("StartGame");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Enemies"))
         {
-            GameOVer();
+            GameOver();
         }
     }
 
@@ -26,7 +28,7 @@ public class Cat : MonoBehaviour, IObserver
     {
         if(collision.gameObject.CompareTag("Lava"))
         {
-            GameOVer();
+            GameOver();
         }
     }
 
@@ -39,7 +41,7 @@ public class Cat : MonoBehaviour, IObserver
         }
     }
 
-    private void GameOVer()
+    private void GameOver()
     {
         UIManager.Instant.PopUpLosePanel();
         Subject.Notify("GameOver");

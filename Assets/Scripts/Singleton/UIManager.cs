@@ -12,6 +12,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _selecLevelPanel;
     [SerializeField] private GameObject _startMenu;
     [SerializeField] private GameObject _exitComfirm;
+    private SliderController _sliderController;
 
     [Header("Star")]
     private Image[] _starIMG;
@@ -24,26 +25,11 @@ public class UIManager : Singleton<UIManager>
     public override void Awake()
     {
         base.Awake();
+        DontDestroyOnLoad(gameObject);
+        _sliderController = GetComponentInChildren<SliderController>();
 
-        PopDownWinPanel();
-        PopDownLosePanel();
-        PopDownExitConfirm();
-
+        LoadUI();
         _starIMG = _starPanel.GetComponentsInChildren<Image>();
-
-        //code tạm
-        if(_selecLevelPanel!= null )_selecLevelPanel.SetActive(false);
-        
-        if(GameManager.Instant.GetBuildIndex() == 0)
-        {
-            if(_gameUI != null)
-            _gameUI.SetActive(false);
-        } 
-        else
-        {
-            if(_startMenu != null)
-            _startMenu.SetActive(false);
-        }
     }
 
     private void GetStar()
@@ -54,6 +40,31 @@ public class UIManager : Singleton<UIManager>
         for (int i = 0; i < _starIMG.Length; i++)
         {
             _starIMG[i].sprite = (value > .33f * i) ? _star : _nullStar;
+        }
+    }
+
+    public void LoadUI()
+    {
+        PopDownWinPanel();
+        PopDownLosePanel();
+        PopDownExitConfirm();
+        _selecLevelPanel.SetActive(false);
+        _exitComfirm.SetActive(false);
+
+        //Tham chiếu tới Line
+        _sliderController.GetLine();
+
+        if (GameManager.Instant.GetBuildIndex() == 0)
+        {
+            Debug.Log("Build Index: " + GameManager.Instant.GetBuildIndex());
+            _gameUI.SetActive(false);
+            _startMenu.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Build Index: " + GameManager.Instant.GetBuildIndex());
+            _startMenu.SetActive(false);
+            _gameUI.SetActive(true);
         }
     }
 

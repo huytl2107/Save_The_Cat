@@ -13,6 +13,11 @@ public class SliderController : MonoBehaviour
     void Start()
     {
         _slider.value = 1;
+        GetLine();
+    }
+
+    public void GetLine()
+    {
         line = FindObjectOfType<LineController>();
     }
 

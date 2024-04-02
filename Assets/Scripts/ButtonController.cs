@@ -7,15 +7,11 @@ public class ButtonControler : MonoBehaviour
     public void RestartLevel()
     {
         GameManager.Instant.RestartGame();
-        UIManager.Instant.PopDownWinPanel();
-        UIManager.Instant.PopDownLosePanel();
     }
 
     public void NextLevel()
     {
         GameManager.Instant.LoadNextLevel();
-        UIManager.Instant.PopDownWinPanel();
-        UIManager.Instant.PopDownLosePanel();
     }
 
     public void PopUpExitConfirm()
@@ -33,3 +29,4 @@ public class ButtonControler : MonoBehaviour
         GameManager.Instant.ExitGame();
     }
 }
+
