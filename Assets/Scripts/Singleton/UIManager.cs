@@ -8,10 +8,12 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _losePanel;
+    [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _starPanel;
     [SerializeField] private GameObject _selecLevelPanel;
     [SerializeField] private GameObject _startMenu;
     [SerializeField] private GameObject _exitComfirm;
+    [SerializeField] private GameObject _settingPanel;
     private SliderController _sliderController;
 
     [Header("Star")]
@@ -47,7 +49,9 @@ public class UIManager : Singleton<UIManager>
     {
         PopDownWinPanel();
         PopDownLosePanel();
+        PopDownPausePannel();
         PopDownExitConfirm();
+        PopDownSettingPannel();
         _selecLevelPanel.SetActive(false);
         _exitComfirm.SetActive(false);
 
@@ -111,4 +115,28 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion ExitConfirm
+
+    #region SettingPanel
+    public void PopUpSettingPannel()
+    {
+        _settingPanel.SetActive(true);
+    }
+
+    public void PopDownSettingPannel()
+    {
+        _settingPanel.SetActive(false);
+    }
+    #endregion SettingPannel
+
+    #region PausePannel
+    public void PopUpPausePannel()
+    {
+        _pausePanel.SetActive(true);
+    }
+
+    public void PopDownPausePannel()
+    {
+        _pausePanel.SetActive(false);
+    }
+    #endregion PausePannel
 }

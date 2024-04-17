@@ -20,6 +20,12 @@ public class ButtonControler : MonoBehaviour
         GameManager.Instant.LoadNextLevel();
     }
 
+    public void ExitGame()
+    {
+        GameManager.Instant.ExitGame();
+    }
+
+    #region ExitConfirm
     public void PopUpExitConfirm()
     {
         UIManager.Instant.PopUpExitConfirm();
@@ -29,10 +35,40 @@ public class ButtonControler : MonoBehaviour
     {
         UIManager.Instant.PopDownExitConfirm();
     }
+    #endregion ExitConfirm
 
-    public void ExitGame()
+    #region SettingPannel
+    public void PopUpSettingPannel()
     {
-        GameManager.Instant.ExitGame();
+        UIManager.Instant.PopUpSettingPannel();
     }
+
+    public void PopDownSettingPannel()
+    {
+        UIManager.Instant.PopDownSettingPannel();
+    }
+    #endregion SettingPannel
+
+    #region PausePannel
+    public void PupUpPausePannel()
+    {
+        UIManager.Instant.PopUpPausePannel();
+    }
+
+    public void PopDownPausePannel()
+    {
+        UIManager.Instant.PopDownPausePannel();
+    }
+
+    public void PauseGame()
+    {
+        GameManager.Instant.PauseGame();
+    }
+
+    public void ResumeGame()
+    {
+        GameManager.Instant.ResumeGame();
+    }
+    #endregion PausePannel
 }
 

@@ -37,4 +37,14 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
 }
